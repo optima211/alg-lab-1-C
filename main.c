@@ -18,6 +18,30 @@ void selectionSort(int *num, int size) {
 
 }
 
+// Функция сортировки методом Шелла
+void shellSort(int *num, int size) {
+    int increment = 3;    // начальное приращение сортировки
+    while (increment > 0)  // пока существует приращение
+    {
+        for (int i = 0; i < size; i++)  // для всех элементов массива
+        {
+            int j = i;          // сохраняем индекс и элемент
+            int temp = num[i];
+            // просматриваем остальные элементы массива, отстоящие от j-ого
+            // на величину приращения
+            while ((j >= increment) && (num[j - increment] > temp)) {  // пока отстоящий элемент больше текущего
+                num[j] = num[j - increment]; // перемещаем его на текущую позицию
+                j = j - increment;       // переходим к следующему отстоящему элементу
+            }
+            num[j] = temp; // на выявленное место помещаем сохранённый элемент
+        }
+        if (increment > 1)      // делим приращение на 2
+            increment = increment / 2;
+        else if (increment == 1)   // последний проход завершён,
+            break;  // выходим из цикла
+    }
+}
+
 int main() {
     int a[10]; // Объявляем массив из 10 элементов
     int select;
@@ -31,10 +55,12 @@ int main() {
     scanf_s("%d", &select);
     switch (select) {
         case 1:
-            selectionSort(a, 10);  // вызываем функцию сортировки
+            selectionSort(a, 10);  // вызываем функцию сортировки прямым выбором
             printf("Array output after applying the direct sort method:\n");
             break;
         case 2:
+            shellSort(a, 10); // вызываем функцию сортировки методом Шелла
+            printf("Array output after applying the Shell sort method:\n");
             break;
         default:
             printf("restart the program and enter the correct value\n");
@@ -45,7 +71,7 @@ int main() {
         // Выводим отсортированные элементы массива
         for (int i = 0; i < 10; i++)
             printf("%d ", a[i]);
-        printf("All OK?\n Please, press button 'Enter' on you keyboard! Thanks!");
+        printf("\nAll OK?\n Please, press button 'Enter' on you keyboard!\n Thanks!\n\n");
     }
     getchar();
     getchar();
