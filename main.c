@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <locale.h>
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
     int min, temp; // для поиска минимального элемента и для обмена
@@ -80,6 +80,7 @@ void PyramidSort(int *numbers, int array_size) {
 }
 
 int main() {
+    setlocale(0, "rus"); //поддержка системного русского языка
     int a[10]; // Объявляем массив из 10 элементов
     int select; //переменная для выбора метода сортировки
     // Вводим значения элементов массива
