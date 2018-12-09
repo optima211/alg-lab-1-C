@@ -15,7 +15,6 @@ void selectionSort(int *num, int size) {
         num[i] = num[min];
         num[min] = temp;
     }
-
 }
 
 // Функция сортировки методом Шелла
@@ -82,7 +81,7 @@ void PyramidSort(int *numbers, int array_size) {
 
 int main() {
     int a[10]; // Объявляем массив из 10 элементов
-    int select;
+    int select; //переменная для выбора метода сортировки
     // Вводим значения элементов массива
     printf("Hello! \nPlease, enter element of massive\n");
     for (int i = 0; i < 10; i++) {
