@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+int contr_sum1, contr_sum2;
+
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
     int min, temp; // для поиска минимального элемента и для обмена
@@ -83,7 +85,6 @@ void PyramidSort(int *numbers, int array_size) {
 
 int main() {
     int n, *a;
-    //int a[10]; // Объявляем массив из 10 элементов
     int select; //переменная для выбора метода сортировки
     int error_select = -1944767; //заразервированное число для выдачи ошибки в меню
     //ввод колличества элементов массива
@@ -96,7 +97,9 @@ int main() {
     for (int i = 0; i < n; i++) {
         a[i] = rand() % 100; // диапазон случайных чисед от 0 до 99
         printf("%d ", a[i]);
+        contr_sum1 += a[i];
     }
+    printf("\ncontr sum1 = %d", contr_sum1);
     printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
     scanf_s("%d", &select);
     //меню выбора сортирвки
@@ -120,9 +123,13 @@ int main() {
     }
     if (select != error_select) {
         // Выводим отсортированные элементы массива
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             printf("%d ", a[i]);
-        printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
+            contr_sum2 += a[i];
+        }
+        if (contr_sum1 == contr_sum2)
+            printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
+        else printf("\nwe are have problem!\n");
     }
     getchar();
     putchar('\n');
