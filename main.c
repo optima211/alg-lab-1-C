@@ -133,13 +133,11 @@ int main() {
                 case 1 :
                     break;
                 default:
-                    printf("restart the program and enter the correct value\n");
                     select = error_select;
                     break;
             }
             break;
         default:
-            printf("restart the program and enter the correct value\n");
             select = error_select;
             break;
     }
@@ -151,8 +149,8 @@ int main() {
         }
         if (contr_sum1 == contr_sum2)
             printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
-        else printf("\nwe are have problem!\n");
-    }
+        else printf("\nwe are have problem! contr-sum have error\n");
+    } else printf("restart the program and enter the correct value\n");
     getchar();
     putchar('\n');
     free(a);
