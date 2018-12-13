@@ -98,49 +98,53 @@ int main() {
     //ввод колличества элементов массива
     printf("insert size your massive: ");
     scanf_s("%d", &n);
-    //задание функции задания случайных чисел
-    srand(time(0));
-    a = malloc(n * sizeof(int));
-    printf("finish massive:\n");
-    for (int i = 0; i < n; i++) {
-        a[i] = rand() % 100; // диапазон случайных чисед от 0 до 99
-        printf("%d ", a[i]);
-        contr_sum1 += a[i];
-    }
-    printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
-    scanf_s("%d", &select);
-    //меню выбора сортирвки
-    switch (select) {
-        case 1:
-            selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
-            printf("Array output after applying the direct sort method:\n");
-            break;
-        case 2:
-            shellSort(a, n); // вызываем функцию сортировки методом Шелла
-            printf("Array output after applying the Shell sort method:\n");
-            break;
-        case 3:
-            PyramidSort(a, n); // вызов функции пирамидальной сортировки
-            printf("Array output after applying the pyramid sort method:\n");
-            break;
-        default:
-            printf("restart the program and enter the correct value\n");
-            select = error_select;
-            break;
-    }
-    if (select != error_select) {
-        // Выводим отсортированные элементы массива
+    if (n <= 0) { printf("\n\nrestart program and write more number!\nnumber need not small`s 1\n"); }
+    else {
+        //задание функции задания случайных чисел
+        srand(time(0));
+        a = malloc(n * sizeof(int));
+        printf("finish massive:\n");
         for (int i = 0; i < n; i++) {
+            a[i] = rand() % 100; // диапазон случайных чисед от 0 до 99
             printf("%d ", a[i]);
-            contr_sum2 += a[i];
+            contr_sum1 += a[i];
         }
-        printf("\n\ncount if`s = %d \ncount permutation`s = %d\n", count_if, permutation);
-        if (contr_sum1 == contr_sum2)
-            printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
-        else printf("\nwe are have problem!\n");
+        printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
+        scanf_s("%d", &select);
+        //меню выбора сортирвки
+        switch (select) {
+            case 1:
+                selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
+                printf("Array output after applying the direct sort method:\n");
+                break;
+            case 2:
+                shellSort(a, n); // вызываем функцию сортировки методом Шелла
+                printf("Array output after applying the Shell sort method:\n");
+                break;
+            case 3:
+                PyramidSort(a, n); // вызов функции пирамидальной сортировки
+                printf("Array output after applying the pyramid sort method:\n");
+                break;
+            default:
+                printf("restart the program and enter the correct value\n");
+                select = error_select;
+                break;
+        }
+        if (select != error_select) {
+            // Выводим отсортированные элементы массива
+            for (int i = 0; i < n; i++) {
+                printf("%d ", a[i]);
+                contr_sum2 += a[i];
+            }
+            printf("\n\ncount if`s = %d \ncount permutation`s = %d\n", count_if, permutation);
+            if (contr_sum1 == contr_sum2)
+                printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
+            else printf("\nwe are have problem!\n");
+        }
+        getchar();
+        putchar('\n');
+        free(a);
     }
-    getchar();
-    putchar('\n');
-    free(a);
+    system("pause");
     return 0;
 }
