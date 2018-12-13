@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include <locale.h>
+#include <stdlib.h>
+#include <time.h>
+
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
     int min, temp; // для поиска минимального элемента и для обмена
@@ -80,43 +82,50 @@ void PyramidSort(int *numbers, int array_size) {
 }
 
 int main() {
-    setlocale(0, "rus"); //поддержка системного русского языка
-    int a[10]; // Объявляем массив из 10 элементов
+    int n, *a;
+    //int a[10]; // Объявляем массив из 10 элементов
     int select; //переменная для выбора метода сортировки
-    // Вводим значения элементов массива
-    printf("Hello! \nPlease, enter element of massive\n");
-    for (int i = 0; i < 10; i++) {
-        printf("a[%d] = ", i);
-        scanf_s("%d", &a[i]);
+    int error_select = -1944767; //заразервированное число для выдачи ошибки в меню
+    //ввод колличества элементов массива
+    printf("insert size your massive: ");
+    scanf_s("%d", &n);
+    //задание функции задания случайных чисел
+    srand(time(0));
+    a = malloc(n * sizeof(int));
+    printf("finish massive:\n");
+    for (int i = 0; i < n; i++) {
+        a[i] = rand() % 100; // диапазон случайных чисед от 0 до 99
+        printf("%d ", a[i]);
     }
-    printf("Select function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
+    printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
     scanf_s("%d", &select);
     //меню выбора сортирвки
     switch (select) {
         case 1:
-            selectionSort(a, 10);  // вызываем функцию сортировки прямым выбором
+            selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
             printf("Array output after applying the direct sort method:\n");
             break;
         case 2:
-            shellSort(a, 10); // вызываем функцию сортировки методом Шелла
+            shellSort(a, n); // вызываем функцию сортировки методом Шелла
             printf("Array output after applying the Shell sort method:\n");
             break;
         case 3:
-            PyramidSort(a, 10); // вызов функции пирамидальной сортировки
+            PyramidSort(a, n); // вызов функции пирамидальной сортировки
             printf("Array output after applying the pyramid sort method:\n");
             break;
         default:
             printf("restart the program and enter the correct value\n");
-            select = -1944767;
+            select = error_select;
             break;
     }
-    if (select != -1944767) {
+    if (select != error_select) {
         // Выводим отсортированные элементы массива
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < n; i++)
             printf("%d ", a[i]);
-        printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!\n\n");
+        printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
     }
     getchar();
-    getchar();
+    putchar('\n');
+    free(a);
     return 0;
 }
