@@ -100,11 +100,13 @@ int main() {
         contr_sum1 += a[i];
     }
     printf("\ncontr sum1 = %d", contr_sum1);
-    printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
+    printf("\nSelect method of sort you massive:\n 1-descending order\n 2- in ascending order\n");
     scanf_s("%d", &select);
     //меню выбора сортирвки
     switch (select) {
-        case 1:
+        case 1: // сортировка по возрастанию
+            printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
+            scanf_s("%d", &select);
             switch (select) {
                 case 1:
                     selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
@@ -124,7 +126,17 @@ int main() {
                     break;
             }
             break;
-        case 2:
+        case 2: // сортировка по убыванию
+            printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
+            scanf_s("%d", &select);
+            switch (select) {
+                case 1 :
+                    break;
+                default:
+                    printf("restart the program and enter the correct value\n");
+                    select = error_select;
+                    break;
+            }
             break;
         default:
             printf("restart the program and enter the correct value\n");
