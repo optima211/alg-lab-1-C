@@ -3,6 +3,7 @@
 #include <time.h>
 
 int contr_sum1, contr_sum2;// задание переменных сравнения контрольной суммы
+int count_if = 0, permutation = 0;// счетчики условий и перестановок
 
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
@@ -14,10 +15,12 @@ void selectionSort(int *num, int size) {
         {
             if (num[j] < num[min]) // если элемент меньше минимального,
                 min = j;       // запоминаем его индекс в min
+            count_if++;
         }
         temp = num[i];      // меняем местами i-ый и минимальный элементы
         num[i] = num[min];
         num[min] = temp;
+        permutation++;
     }
 }
 
@@ -35,8 +38,10 @@ void shellSort(int *num, int size) {
             while ((j >= increment) && (num[j - increment] > temp)) {  // пока отстоящий элемент больше текущего
                 num[j] = num[j - increment]; // перемещаем его на текущую позицию
                 j = j - increment;       // переходим к следующему отстоящему элементу
+                count_if++;
             }
             num[j] = temp; // на выявленное место помещаем сохранённый элемент
+            permutation++;
         }
         if (increment > 1)      // делим приращение на 2
             increment = increment / 2;
@@ -64,6 +69,8 @@ void siftDown(int *numbers, int root, int bottom) {
             numbers[root] = numbers[maxChild];
             numbers[maxChild] = temp;
             root = maxChild;
+            permutation++;
+            count_if++;
         } else // иначе
             done = 1; // пирамида сформирована
     }
@@ -79,6 +86,7 @@ void PyramidSort(int *numbers, int array_size) {
         int temp = numbers[0];
         numbers[0] = numbers[i];
         numbers[i] = temp;
+        permutation++;
         siftDown(numbers, 0, i - 1);
     }
 }
@@ -99,7 +107,6 @@ int main() {
         printf("%d ", a[i]);
         contr_sum1 += a[i];
     }
-    printf("\ncontr sum1 = %d", contr_sum1);
     printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
     scanf_s("%d", &select);
     //меню выбора сортирвки
@@ -127,6 +134,7 @@ int main() {
             printf("%d ", a[i]);
             contr_sum2 += a[i];
         }
+        printf("\n\ncount if`s = %d \ncount permutation`s = %d\n", count_if, permutation);
         if (contr_sum1 == contr_sum2)
             printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
         else printf("\nwe are have problem!\n");
