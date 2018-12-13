@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int contr_sum1, contr_sum2;
+int contr_sum1, contr_sum2;// задание переменных сравнения контрольной суммы
 
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
@@ -105,16 +105,26 @@ int main() {
     //меню выбора сортирвки
     switch (select) {
         case 1:
-            selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
-            printf("Array output after applying the direct sort method:\n");
+            switch (select) {
+                case 1:
+                    selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
+                    printf("Array output after applying the direct sort method:\n");
+                    break;
+                case 2:
+                    shellSort(a, n); // вызываем функцию сортировки методом Шелла
+                    printf("Array output after applying the Shell sort method:\n");
+                    break;
+                case 3:
+                    PyramidSort(a, n); // вызов функции пирамидальной сортировки
+                    printf("Array output after applying the pyramid sort method:\n");
+                    break;
+                default:
+                    printf("restart the program and enter the correct value\n");
+                    select = error_select;
+                    break;
+            }
             break;
         case 2:
-            shellSort(a, n); // вызываем функцию сортировки методом Шелла
-            printf("Array output after applying the Shell sort method:\n");
-            break;
-        case 3:
-            PyramidSort(a, n); // вызов функции пирамидальной сортировки
-            printf("Array output after applying the pyramid sort method:\n");
             break;
         default:
             printf("restart the program and enter the correct value\n");
