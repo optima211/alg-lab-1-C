@@ -100,44 +100,24 @@ int main() {
         contr_sum1 += a[i];
     }
     printf("\ncontr sum1 = %d", contr_sum1);
-    printf("\nSelect method of sort you massive:\n 1-descending order\n 2- in ascending order\n");
+    printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
     scanf_s("%d", &select);
     //меню выбора сортирвки
     switch (select) {
-        case 1: // сортировка по возрастанию
-            printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
-            scanf_s("%d", &select);
-            switch (select) {
-                case 1:
-                    selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
-                    printf("Array output after applying the direct sort method:\n");
-                    break;
-                case 2:
-                    shellSort(a, n); // вызываем функцию сортировки методом Шелла
-                    printf("Array output after applying the Shell sort method:\n");
-                    break;
-                case 3:
-                    PyramidSort(a, n); // вызов функции пирамидальной сортировки
-                    printf("Array output after applying the pyramid sort method:\n");
-                    break;
-                default:
-                    printf("restart the program and enter the correct value\n");
-                    select = error_select;
-                    break;
-            }
+        case 1:
+            selectionSort(a, n);  // вызываем функцию сортировки прямым выбором
+            printf("Array output after applying the direct sort method:\n");
             break;
-        case 2: // сортировка по убыванию
-            printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
-            scanf_s("%d", &select);
-            switch (select) {
-                case 1 :
-                    break;
-                default:
-                    select = error_select;
-                    break;
-            }
+        case 2:
+            shellSort(a, n); // вызываем функцию сортировки методом Шелла
+            printf("Array output after applying the Shell sort method:\n");
+            break;
+        case 3:
+            PyramidSort(a, n); // вызов функции пирамидальной сортировки
+            printf("Array output after applying the pyramid sort method:\n");
             break;
         default:
+            printf("restart the program and enter the correct value\n");
             select = error_select;
             break;
     }
@@ -149,8 +129,8 @@ int main() {
         }
         if (contr_sum1 == contr_sum2)
             printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
-        else printf("\nwe are have problem! contr-sum have error\n");
-    } else printf("restart the program and enter the correct value\n");
+        else printf("\nwe are have problem!\n");
+    }
     getchar();
     putchar('\n');
     free(a);
