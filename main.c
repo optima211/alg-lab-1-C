@@ -4,6 +4,7 @@
 
 int contr_sum1, contr_sum2;// задание переменных сравнения контрольной суммы
 int count_if = 0, permutation = 0;// счетчики условий и перестановок
+int kol = 0;// колличество серий (неубывающая последовательность элементов массива максимальной длины)
 
 // Функция сортировки прямым выбором
 void selectionSort(int *num, int size) {
@@ -91,6 +92,14 @@ void PyramidSort(int *numbers, int array_size) {
     }
 }
 
+//функция подсчета колличества серий
+void CountSer(int *num, int array_size) {
+    for (int i = 1; i < array_size; i++)
+        if (num[i - 1] != num[i])
+            kol++;
+    printf("\nCount series:%d\n", kol);
+}
+
 int main() {
     int n, *a;
     int select; //переменная для выбора метода сортировки
@@ -109,6 +118,8 @@ int main() {
             printf("%d ", a[i]);
             contr_sum1 += a[i];
         }
+        printf("\nContr sum start-massive: %d\n", contr_sum1);
+        CountSer(a, n); // вызов функции подсчета колличества серий
         printf("\nSelect function of sort you massive:\n 1- Method direct sort\n 2- Method of Shell\n 3- Method of pyramidal sort\n");
         scanf_s("%d", &select);
         //меню выбора сортирвки
@@ -137,6 +148,8 @@ int main() {
                 contr_sum2 += a[i];
             }
             printf("\n\ncount if`s = %d \ncount permutation`s = %d\n", count_if, permutation);
+            CountSer(a, n); // вызов функции подсчета колличества серий
+            printf("\nContr sum output-massive: %d\n", contr_sum2);
             if (contr_sum1 == contr_sum2)
                 printf("\nAll work done!\n Please, press button 'Enter' on you keyboard!\n Thanks!");
             else printf("\nwe are have problem!\n");
